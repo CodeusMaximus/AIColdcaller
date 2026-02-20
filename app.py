@@ -639,6 +639,28 @@ async def run_calling_campaign(query: dict, max_calls: int = None):
 # --------------------------
 
 
+@app.post("/twilio-webhook")
+async def twilio_webhook(request: Request):
+    params = dict(request.query_params)
+    lead_id = params.get("lead_id")
+
+    print(f"🔥 Call connected (lead_id: {lead_id})")
+
+    media_ws_url = ws_url_from_public_base(PUBLIC_BASE_URL)
+
+    print(f"🔗 WebSocket URL: {media_ws_url}")  # ← ADD THIS
+    print(f"🌐 PUBLIC_BASE_URL: {PUBLIC_BASE_URL}")  # ← ADD THIS
+
+    vr = VoiceResponse()
+    connect = Connect()
+    connect.stream(url=media_ws_url)
+    vr.append(connect)
+
+    print(f"📄 TwiML: {str(vr)}")  # ← ADD THIS
+
+    return Response(str(vr), media_type="text/xml")
+
+
 @app.post("/test-auto-booking")
 async def test_auto_booking():
     """Test endpoint to verify auto-booking works"""

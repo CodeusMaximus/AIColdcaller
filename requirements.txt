@@ -6,7 +6,7 @@ twilio
 websockets
 python-dotenv
 audioop-lts
-bson
+ 
 flask
 flask-sock
 websocket-client

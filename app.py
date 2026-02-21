@@ -32,9 +32,8 @@ TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN", "")
 NEXTJS_BASE_URL = os.getenv(
     "NEXTJS_BASE_URL", "http://localhost:3000")  # ✅ ADD THIS
 
-OPENAI_MODEL = os.getenv("OPENAI_REALTIME_MODEL",
-                         "gpt-4o-realtime-preview-2024-12-17")
-OPENAI_VOICE = os.getenv("OPENAI_VOICE", "alloy")
+OPENAI_MODEL = os.getenv("OPENAI_REALTIME_MODEL", "gpt-realtime")
+OPENAI_VOICE = os.getenv("OPENAI_VOICE", "marin")
 
 # MongoDB configuration - IMPORTANT: Must match your Next.js database!
 MONGODB_URI = os.getenv("MONGODB_URI", "mongodb://localhost:27017")
@@ -81,8 +80,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "http://localhost:3001",
-        "http://localhost:3002",
+        "https://crmtool-ten.vercel.app",
         # Add your production Next.js URL here when deployed
     ],
     allow_credentials=True,
